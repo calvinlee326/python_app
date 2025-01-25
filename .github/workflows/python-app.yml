@@ -44,7 +44,7 @@ jobs:
     - name: Deploy to Heroku
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        HEROKU_APP_NAME: my-python-app-2025  # 替換成你的 Heroku 應用程式名稱
+        HEROKU_APP_NAME: python-app  # 替換成你的 Heroku 應用程式名稱
       run: |
         heroku git:remote -a $HEROKU_APP_NAME
         git push heroku main
