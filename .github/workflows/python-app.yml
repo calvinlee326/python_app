@@ -32,7 +32,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: test  # 這裡表明 deploy 依賴於 test
+    needs: test
 
     steps:
     - name: Checkout code
@@ -44,6 +44,10 @@ jobs:
     - name: Deploy to Heroku
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        HEROKU_APP_NAME: my-python-app-2025
       run: |
-        heroku git:remote -a my-python-app-2025
+        heroku auth:token
+        heroku git:remote -a $HEROKU_APP_NAME
+        git config --global user.email "calvinlee326@gmail.com"
+        git config --global user.name "calvinlee326"
         git push heroku main
